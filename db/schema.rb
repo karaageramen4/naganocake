@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2023_06_21_040340) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -97,6 +98,30 @@ ActiveRecord::Schema.define(version: 2023_06_21_040340) do
     t.index ["id"], name: "index_genres_on_id"
   end
 
+
+  create_table "order_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.integer "price"
+    t.integer "produciton_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "postage"
+    t.integer "payment_method", default: 0, null: false
+    t.integer "billing_total"
+    t.integer "order_status", default: 0, null: false
+    t.string "name"
+    t.string "postal_code"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
@@ -110,5 +135,6 @@ ActiveRecord::Schema.define(version: 2023_06_21_040340) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+
 
 end
