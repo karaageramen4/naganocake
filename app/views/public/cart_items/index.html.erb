@@ -1,2 +1,68 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3 class="col-3 bg-light text-center">ショッピングカート</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 mb-3">
+      <div class="text-right">
+        <%= link_to "カートを空にする", destroy_all_path , method: :delete, class:"btn btn-sm btn-danger", "data-confirm"=>"カートを空にしますか？" %>
+      </div>
+    </div>
+
+    <table class="col-10 table table-bordered ">
+      <thead class="thead-light">
+        <th class="col-6">商品名</th>
+        <th class="col-2">単価（税込み）</th>
+        <th class="col-2">数量</th>
+        <th class="col-1">小計</th>
+        <th class="col-2"></th>
+      </thead>
+      <% total = 0 %>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.product.name %></td>
+          <td>¥<%= cart_item.add_tax.to_s(:delimited, delimiter: ',') %></td>
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item),method: :patch do |f| %> <%= f.hidden_field :customer_id, :value =>current_customer.id %> <%= f.select :quantity, *[1..99] %>
+              <%= f.submit "変更", class: "btn btn-primary" %>
+            <% end %>
+          </td>
+          <td>
+            ¥<%= cart_item.calc_subtotal.to_s(:delimited, delimiter: ',') %>
+          </td>
+          <td>
+            <%= link_to cart_item_path(cart_item.id), method: :delete,class:"btn btn-sm btn-danger", "data-confirm"=>"この商品を消してもいいですか？" do %>
+              削除
+            <% end %>
+          </td>
+          <% total += cart_item.calc_subtotal %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-10 text-light">
+      <table class="col-4 offset-8 table table-bordered border-dark">
+        <tr>
+          <th class="bg-light">合計金額</th>
+          <td>¥<%= total.to_s(:delimited, delimiter: ',') %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 ">
+      <%= link_to "買い物を続ける", products_path, class:"btn btn-primary" %>
+    </div>
+    <div class="col-3 text-right">
+      <% if CartItem.exists?(customer_id: current_customer.id)%>
+        <%= link_to "レジに進む", new_order_path, class:"btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
