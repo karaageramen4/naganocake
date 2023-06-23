@@ -29,4 +29,8 @@ class Admin::GenresController < ApplicationController
   def genre_params
      params.require(:genre).permit(:name)
   end
+
+  def login_required
+    redirect_to login_path unless current_user
+  end
 end

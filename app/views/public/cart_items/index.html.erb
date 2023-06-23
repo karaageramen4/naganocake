@@ -26,9 +26,8 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
 
-            <tr class="active">
+            <tr>
               <td>
-
                 <%= attachment_image_tag cart_item.item, :image, :fill, 60,  60, format: 'jpeg' %>
                 <%= cart_item.item.name %>
                 </td>

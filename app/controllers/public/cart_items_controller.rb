@@ -41,7 +41,11 @@ class Public::CartItemsController < ApplicationController
 
  private
   def cart_item_params
-    params.require(:cart_item).permit(:costomer_id, :item_id, :amount )
+    params.require(:cart_item).permit(:customer_id, :item_id, :amount )
+  end
+
+  def login_required
+    redirect_to login_path unless current_user
   end
 
 
