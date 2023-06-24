@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+namespace :admin do
+  resources :customers, only: [:index, :show, :edit, :update]
+end
 namespace :public do
   get 'customers/check'
   get 'customers/my_page', to: 'customers#show', as: 'my_page'
