@@ -9,8 +9,8 @@ class CartItem < ApplicationRecord
     (self.product.price_without_tax * 1.10).round
   end
 
-  def calc_subtotal
-    (self.product.price_without_tax * 1.10 * self.quantity).round
+  def subtotal
+    item.with_tax_price * amount
   end
 
 end
