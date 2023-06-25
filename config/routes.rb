@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   }
 
  namespace :public do
+
   root to: "homes#top"
   get '/about' => "homes#about"
+
 
   get 'customers/check'
   get 'customers/my_page', to: 'customers#show', as: 'my_page'
