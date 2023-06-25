@@ -8,16 +8,16 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:passwords, :registrations], controllers: {
     sessions: "admin/sessions"
   }
-
- scope module: :public do
+ 
+ namespace :public do
    root to: "homes#top"
    get '/about' => "homes#about"
-
-   get '/customers/my_page' => "customers#show"
-   get '/customers/information/edit' => "customers#edit"
-   patch '/customers/information' => "customers#update"
-   get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-   patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+   
+  get 'customers/check'
+  get 'customers/my_page', to: 'customers#show', as: 'my_page'
+  get 'customers/information/edit', to: 'customers#edit', as: 'edit_information'
+  patch 'customers/information', to: 'customers#update'
+  patch 'customers/withdraw', to: 'customers#withdraw'
 
    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
    resources :products, only: [:index, :show]
