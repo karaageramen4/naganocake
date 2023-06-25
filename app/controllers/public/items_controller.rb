@@ -1,16 +1,18 @@
 class Public::ItemsController < ApplicationController
+ 
   def index
-    @total_items = Item.all
-    @items = Item.all.page(params[:page]).per(8)
+    # @genres = Genre.all
+    @all_item = Item.all
+    @items = Item.page(params[:page]).per(8)
   end
 
   def show
-        @item = Item.find(params[:id])
+    # @genres = Genre.all
+    @item = Item.find(params[:id])
     @cart_item = CartItem.new
+    @customer = current_customer
+
+
   end
-  
-   private
-  def items_params
-    parmas.require(:item).permit(:genle_id, :name, :introduction, :price, :is_active, :image_id)
-  end
+
 end
