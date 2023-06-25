@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
-=======
 
->>>>>>> develop
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -12,11 +9,11 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:passwords, :registrations], controllers: {
     sessions: "admin/sessions"
   }
- 
+
  namespace :public do
-   root to: "homes#top"
-   get '/about' => "homes#about"
-   
+  root to: "homes#top"
+  get '/about' => "homes#about"
+
   get 'customers/check'
   get 'customers/my_page', to: 'customers#show', as: 'my_page'
   get 'customers/information/edit', to: 'customers#edit', as: 'edit_information'
@@ -24,7 +21,7 @@ Rails.application.routes.draw do
   patch 'customers/withdraw', to: 'customers#withdraw'
 
    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-   resources :products, only: [:index, :show]
+   resources :items, only: [:index, :show]
    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
    resources :cart_items, only: [:create, :index, :update, :destroy]
 
