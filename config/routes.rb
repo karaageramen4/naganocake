@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+namespace :admin do
+  resources :customers, only: [:index, :show, :edit, :update]
+end
+namespace :public do
+  get 'customers/check'
+  get 'customers/my_page', to: 'customers#show', as: 'my_page'
+  get 'customers/information/edit', to: 'customers#edit', as: 'edit_information'
+  patch 'customers/information', to: 'customers#update'
+  patch 'customers/withdraw', to: 'customers#withdraw'
+end
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
