@@ -264,7 +264,10 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   enum_help
+<<<<<<< HEAD
+=======
   image_processing (~> 1.2)
+>>>>>>> develop
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)
   listen (~> 3.3)

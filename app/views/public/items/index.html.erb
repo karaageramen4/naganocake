@@ -1,0 +1,40 @@
+<!--<div>-->
+<!--  <p>ジャンル検索</p>-->
+<!--  <%# @genres.each do |genre| %>-->
+<!--    <%#= genre.name %>-->
+<!--  <%# end %>-->
+<!--</div>-->
+
+
+<p id="notice"></p>
+<div class="container">
+
+  <div class="row">
+    <h5><strong>商品一覧</strong>(全<%= @items.count %>／<%= @all_item.count %>件)</h5>
+  </div>
+
+  <div class="row">
+
+    <% @items.each do |item| %>
+    <div class="col d-flex justify-content-around">
+      <div class="mr-3 mb-3">
+        <%= link_to item_path(item.id) do %>
+        <%= image_tag item.get_image(200,150) %><br>
+        <% end %>
+        <h3><%= item.name %></h3>
+        <div>¥<%= item.price.to_s(:delimited) %></div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+  <div class="row">
+    <div class="d-block mx-auto">
+      <%= paginate @items %>
+    </div>
+  </div>
+
+</div>
+
+
