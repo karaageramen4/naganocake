@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @products = Product.all.order(created_at: :desc)
+    @products = Product.limit(4)
   end
 
   def about
