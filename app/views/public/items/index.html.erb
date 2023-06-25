@@ -10,12 +10,12 @@
 <div class="container">
 
   <div class="row">
-    <h5><strong>商品一覧</strong>(全<%= @items.count %>／<%= @all_item.count %>件)</h5>
+    <h5><strong>商品一覧</strong>(全<%= @products_count %>／<%= @all_product_count %>件)</h5>
   </div>
 
   <div class="row">
 
-    <% @items.each do |item| %>
+    <% @products.each do |product| %>
     <div class="col d-flex justify-content-around">
       <div class="mr-3 mb-3">
         <%= link_to item_path(item.id) do %>
@@ -31,7 +31,7 @@
 
   <div class="row">
     <div class="d-block mx-auto">
-      <%= paginate @items %>
+      <%= paginate @products %>
     </div>
   </div>
 

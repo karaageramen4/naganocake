@@ -21,7 +21,7 @@ class Public::CartItemsController < ApplicationController
 
 
     else
-    cart_item = CartItem.new(params_cart_item)
+    @cart_item = CartItem.new(params_cart_item)
 
     # binding.pry
     cart_item.save
@@ -35,7 +35,7 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
 
-    cart_item = CartItem.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
     if cart_item.destroy
     redirect_to cart_items_path
     end
@@ -47,7 +47,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
     cart_item.update(params_cart_item)
     redirect_to cart_items_path
   end
