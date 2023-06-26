@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
 
  namespace :public do
+
    root to: "homes#top"
    get '/about' => "homes#about"
    get 'customers/check'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
    patch 'customers/information', to: 'customers#update'
    patch 'customers/withdraw', to: 'customers#withdraw'
    resources :shipping_addresses, only: [:create, :index, :edit, :update, :destroy]
+
    resources :items, only: [:index, :show]
    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
    resources :cart_items, only: [:create, :index, :update, :destroy]
