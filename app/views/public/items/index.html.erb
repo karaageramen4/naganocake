@@ -18,11 +18,11 @@
     <% @products.each do |product| %>
     <div class="col d-flex justify-content-around">
       <div class="mr-3 mb-3">
-        <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_image(200,150) %><br>
+        <%= link_to public_item_path(product.id) do %>
+        <%= image_tag product.get_image(200,150) %><br>
         <% end %>
-        <h3><%= item.name %></h3>
-        <div>¥<%= item.price.to_s(:delimited) %></div>
+        <h3><%= product.name %></h3>
+        <div>¥<%= product.price.to_s(:delimited) %></div>
       </div>
     </div>
     <% end %>
