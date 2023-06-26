@@ -4,7 +4,7 @@
     <h5 class="bg-light text-dark">配送先登録/一覧</h5>
   </div>
 
-  <%= form_with model: @address, url: shipping_addresses_path do |f| %>
+  <%= form_with model: @address, url: public_shipping_addresses_path do |f| %>
     <div class="row mb-3">
       <%= f.label :"郵便番号（ハイフンなし)", class: "col-md-3 col-form-label" %>
       <div class="col-md-3">
@@ -48,8 +48,8 @@
               <td><%= address.address %></td>
               <td><%= address.name %></td>
               <td>
-                <%= link_to "編集する", edit_shipping_address_path(address), class: "btn btn-success" %>
-                <%= link_to "削除する", shipping_address_path(address), method: :delete, class: "btn btn-danger" %>
+                <%= link_to "編集する", edit_public_shipping_address_path(address), class: "btn btn-success" %>
+                <%= link_to "削除する", public_shipping_address_path(address), method: :delete, class: "btn btn-danger" %>
               </td>
             </tr>
           <% end %>

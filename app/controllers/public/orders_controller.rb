@@ -13,16 +13,16 @@ class Public::OrdersController < ApplicationController
     if @order.save
       cart_items = current_customer.cart_items
       cart_items.each do |cart_item|
-        order_product = OrderDetail.new
+        order_product = OrderProduct.new
         order_product.order_id = @order.id
         order_product.product_id = cart_item.product_id
-        order_product.amount = cart_item.amount
+        order_product.quantity = cart_item.quantity
         order_product.price = cart_item.product.with_tax_price
         order_product.making_status = 0
         order_product.save
       end
       cart_items.destroy_all
-    redirect_to complete_path
+    redirect_to public_thanks_path
     else
       render :new
     end
