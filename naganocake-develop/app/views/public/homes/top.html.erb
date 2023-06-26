@@ -1,0 +1,42 @@
+  <p id="notice"></p>
+  <div class="container">
+  <div class="row">
+    <div class="d-block mx-auto">
+      <div class="main-visual">
+        <p class="main-visual-text">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <h4><strong>新着商品</strong></h4>
+  </div>
+
+
+  <div class="row">
+    <div class="col d-flex align-items-center">
+    <% @products.each do |product| %>
+    <div class="d-block mx-auto">
+        <%= link_to public_item_path(product.id) do %>
+        <%= image_tag product.get_image(200,150) %>
+      <% end %>
+      <div><%= product.name %></div>
+      <div> ¥<%= product.price.to_s(:delimited) %></div>
+    </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <%= link_to "全ての商品を見る>", public_items_path %>
+    </div>
+  </div>
+
+</div>
