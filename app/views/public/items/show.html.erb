@@ -22,10 +22,9 @@
 
 
       <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
-      <%= f.hidden_field :item_id, :value => @product.id %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
       <%= f.hidden_field :customer_id, :value => @customer.id %>
-      <!--３月２８日にnomethodエラーidがnullログインしていなかったから-->
-      <%= f.select :amount, *[1..20], {include_blank: '個数選択'} %>
+      <%= f.select :quantity, *[1..20], {include_blank: '個数選択'} %>
 
       <%= f.submit "カートに入れる", class: "btn btn-success btn-sm" %>
       <% end %>

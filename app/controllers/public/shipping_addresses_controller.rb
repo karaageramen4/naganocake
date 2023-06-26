@@ -10,7 +10,7 @@ class Public::ShippingAddressesController < ApplicationController
     @address = ShippingAddress.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      redirect_to shipping_addresses_path
+      redirect_to public_shipping_addresses_path
     else
       render :index
     end
@@ -23,7 +23,7 @@ class Public::ShippingAddressesController < ApplicationController
   def update
     @address = current_customer.shipping_addresses.find(params[:id])
     if @address.update(address_params)
-      redirect_to shipping_addresses_path
+      redirect_to public_shipping_addresses_path
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Public::ShippingAddressesController < ApplicationController
   def destroy
     @address = current_customer.shipping_addresses.find(params[:id])
     @address.destroy
-    redirect_to shipping_addresses_path
+    redirect_to public_shipping_addresses_path
   end
 
   private
