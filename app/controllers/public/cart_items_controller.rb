@@ -1,35 +1,27 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
-
-
   def index
      @cart_items = current_customer.cart_items
      @total = 0
-
-
   end
 
   def create
-
-    # @item = Item.find(cart_item_params[:item_id])
     if current_customer.cart_items.find_by(product_id: params[:cart_item][:product_id]).present?
     cart_item = current_customer.cart_items.find_by(product_id: params[:cart_item][:product_id])
     sum = cart_item.quantity + params[:cart_item][:quantity].to_i
     cart_item.update(quantity: sum)
-
-
     else
+<<<<<<< HEAD
     @cart_item = CartItem.new(params_cart_item)
 
     # binding.pry
+=======
+    cart_item = CartItem.new(params_cart_item)
+>>>>>>> origin/develop
     cart_item.save
-
-
     end
     redirect_to public_cart_items_path
-    #redirect_to new_order_path
-
   end
 
   def destroy
@@ -52,7 +44,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   private
-
 
   def params_cart_item
     params.require(:cart_item).permit(:quantity, :product_id, :customer_id)
