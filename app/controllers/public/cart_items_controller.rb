@@ -12,13 +12,9 @@ class Public::CartItemsController < ApplicationController
     sum = cart_item.quantity + params[:cart_item][:quantity].to_i
     cart_item.update(quantity: sum)
     else
-<<<<<<< HEAD
     @cart_item = CartItem.new(params_cart_item)
 
     # binding.pry
-=======
-    cart_item = CartItem.new(params_cart_item)
->>>>>>> origin/develop
     cart_item.save
     end
     redirect_to public_cart_items_path
