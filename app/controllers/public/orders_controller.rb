@@ -18,7 +18,7 @@ class Public::OrdersController < ApplicationController
         order_product.product_id = cart_item.product_id
         order_product.quantity = cart_item.quantity
         order_product.price = cart_item.product.with_tax_price
-        order_product.making_status = 0
+        order_product.produciton_status = 0
         order_product.save
       end
       cart_items.destroy_all
@@ -27,6 +27,7 @@ class Public::OrdersController < ApplicationController
       render :new
     end
   end
+
 
   def confirm
     @orders = current_customer.orders
@@ -38,7 +39,7 @@ class Public::OrdersController < ApplicationController
     @order.name = current_customer.last_name + current_customer.first_name
 
   elsif params[:order][:select_address] == "1"
-    @address = Address.find(params[:order][:address_id])
+    @address = ShippingAddress.find(params[:order][:address_id])
     @order.postal_code = @address.postal_code
     @order.address = @address.address
     @order.name = @address.name
