@@ -23,11 +23,11 @@
     <div class="col d-flex align-items-center">
     <% @products.each do |product| %>
     <div class="d-block mx-auto">
-        <%= link_to products_path(products.id) do %>
-        <%= image_tag products.get_image(200,150) %>
+        <%= link_to public_item_path(product.id) do %>
+        <%= image_tag product.get_image(200,150) %>
       <% end %>
-      <div><%= products.name %></div>
-      <div> ¥<%= products.price.to_s(:delimited) %></div>
+      <div><%= product.name %></div>
+      <div> ¥<%= product.price.to_s(:delimited) %></div>
     </div>
     <% end %>
     </div>
@@ -35,7 +35,7 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-      <%= link_to "全ての商品を見る>", products_path %>
+      <%= link_to "全ての商品を見る>", public_items_path %>
     </div>
   </div>
 
