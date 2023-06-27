@@ -3,12 +3,11 @@
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto d-flex justify-content-between m-5">
       <h3 class="d-flex align-items-center pr-3 pl-3">ジャンル一覧・追加</h3>
     </div>
+
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto" >
-
-
+    　<%= form_with model: [:admin,@genre] do |f| %>
       <table class="table">
         <thead class="table-active">
-          <%= form_with model: [:admin,@genre] do |f| %>
             <div class="form-group mb-5">
               <div class="form-inline">
                 <tr>
@@ -21,6 +20,7 @@
             <% end %>
         </thead>
         <tbody>
+
 
           <% @genres.each do |genre| %>
             <tr>

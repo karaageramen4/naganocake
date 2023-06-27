@@ -1,9 +1,15 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrderDetailsController < ApplicationController
 
   def update
-    order_product = OrderDetail.find(params[:id])
-    order_product.update(order_product_params)
-    redirect_to admin_order_path(order_product.id)
+    @order_product = OrderProduct.find(params[:id])
+    @order_product.update(order_product_params)
+    @order = @order_product.order
+    if @order.order_products.where(produciton_status: 3).count == @order.order_products.count
+      @order.order_status = 3
+      @order.save
+    end
+    redirect_to request.referrer
+
   end
 
   private
