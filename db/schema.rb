@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2023_06_21_040340) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 2023_06_21_040340) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_genres_on_id"
   end
+
 
   create_table "order_products", force: :cascade do |t|
     t.integer "product_id"
