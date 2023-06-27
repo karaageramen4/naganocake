@@ -18,3 +18,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.logo_area {
+  width: 20px;
+}
+
+.logo {
+  height: 1%;
+  width: 1%;
+}
