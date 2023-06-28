@@ -1,0 +1,35 @@
+<!--<div>-->
+<!--  <p>ジャンル検索</p>-->
+<!--  <%# @genres.each do |genre| %>-->
+<!--    <%#= genre.name %>-->
+<!--  <%# end %>-->
+<!--</div>-->
+
+<p id="notice"></p>
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-5">
+      <%= image_tag @product.get_image(400,300) %>
+    </div>
+
+    <div class="col-md-7">
+
+      <p><strong><%= @product.name %></strong></p>
+      <p><%= @product.introduction %></p>
+      <p><strong>¥<%= (@product.price * 1.1).round.to_s(:delimited) %></strong>(税込)</p>
+
+
+      <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
+      <%= f.hidden_field :customer_id, :value => @customer.id %>
+      <%= f.select :quantity, *[1..20], {include_blank: '個数選択'} %>
+
+      <%= f.submit "カートに入れる", class: "btn btn-success btn-sm" %>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
